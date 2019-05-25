@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .hide {
+            visibility: hidden
+        }
+
+        .show {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <h1>ToDo App</h1>
+    <input type='text' id="val">
+    <button onclick="check()">Add</button>
+    <div id='list'>
+        
+    </div>
+
+    <script>
+        var arr = []
+        function asd1 () {
+            document.getElementById('list').innerHTML = null
+            for(var i = 0; i < arr.length; i++) {
+                document.getElementById('list').innerHTML += `<p id=${i}>${i}:${arr[i]}
+                        <button onclick='del(${i})'>Delete</button>
+                        <button onclick='edt(${i})'>Edit</button>
+                        <input type='text' class='hide' id='input${i}'>
+                        <button class='hide' onclick='sbt(${i})' id='subm${i}'>Submit</button>
+                        </p>`
+            }
+        }
+
+        function check () {
+            var asd = document.getElementById('val')
+            if (asd.value === '') {
+                asd.style.borderColor = 'red'
+            }
+            else {
+                arr.push(asd.value)
+                asd1()
+                document.getElementById('val').value = ''
+            }
+        }
+
+        function del (a) {
+            arr.splice(a,1)
+            asd1()
+        }
+
+        function edt (b) {
+            document.getElementById('input'+b).className = 'show'
+            document.getElementById('subm'+b).className = 'show'
+            document.getElementById('input'+b).value = arr[b]
+        }
+
+        function sbt (c) {
+            var abc = document.getElementById('input'+c)
+            if (abc.value === '') {
+                abc.style.borderColor = 'red'
+            }
+            else {
+                arr[c] = abc.value
+                asd1()
+            }
+        }
+    </script>
+</body>
+</html>
